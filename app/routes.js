@@ -58,6 +58,20 @@ module.exports = function(app, passport) {
 					})
 				})
 
+		app.get('/loadDrawing', function(req, res){
+			// var user = req.user._id;
+			var user = '57eff74889664a199d297ffc'
+			var query = User.findOne({ '_id': user })
+				.exec(function(err, doc){
+					// log any errors
+					if (err){
+						console.log(err);
+					} else {
+						res.json(doc.saveDrawing);
+					}
+			})
+		})
+
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {

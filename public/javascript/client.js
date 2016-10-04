@@ -48,7 +48,7 @@ $(function() {
       //add width
       context.lineWidth = data.width;
       context.stroke();
-    
+
       var getDrawingData = {
         startX: line[0].x * width,
         startY: line[0].y * height,
@@ -162,31 +162,24 @@ $(function() {
       socket.emit('clearCanvas', true);
    }
 
-   loadButton.addEventListener("click", function(){
-
-     context.drawImage(savedData,0,0)
-   })
-
-
   var saveButton = document.getElementById('saveDrawing');
+
   saveButton.addEventListener('click', function(){
     savedData.src = canvas.toDataURL("image/png");
-    console.log(savedData.src);
+    var data = {
+      source: savedData.src
+    }
+    $.post('/savedrawing', data).success(function(){
+      console.log('success');
+    },function(err){
+      console.log(err);
+    })
   })
 
-
-
-
-  // //ajax post drawing request
-  // var saveButton = document.getElementById('saveDrawing');
-  // saveButton.addEventListener("click", function(){
-  //   console.log('saved');
-  //   $.post('/savedrawing', JSON.stringify(drawingData)).success(function(data){
-  //     console.log(data);
-  //   },function(err){
-  //     console.log(err);
-  //   })
-  //   return false;
-  // })
-  //ajax get drawing request
+   loadButton.addEventListener("click", function(){
+     $.get('/loadDrawing').success(function(data){
+       savedData.src = data.source
+       context.drawImage(savedData,0,0)
+     })
+   })
 });
