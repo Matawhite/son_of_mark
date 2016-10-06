@@ -14,7 +14,6 @@ $(function() {
    var width   = window.innerWidth/1.6;
    var height  = window.innerHeight/1.6;
    var socket  = io.connect();
-   var drawingData = ['drawing'];
    savedData = new Image();
 
 
@@ -64,83 +63,6 @@ $(function() {
    });
 
 
-//       REFACTOR THIS!!!!!!!!!!!!!!/////////
-
-   //variables and event listeners to change the colors of the line
-   var blueButton = document.getElementById("changeToBlue");
-   var blackButton = document.getElementById("changeToBlack");
-   var redButton = document.getElementById("changeToRed");
-   var yellowButton = document.getElementById("changeToYellow");
-   var greenButton = document.getElementById("changeToGreen");
-   var orangeButton = document.getElementById("changeToOrange");
-   var pinkButton = document.getElementById("changeToPink");
-   var purpleButton = document.getElementById("changeToPurple");
-   var grayButton = document.getElementById("changeToGray");
-
-   var smallButton = document.getElementById("changeToSmall");
-   var mediumButton = document.getElementById("changeToMedium");
-   var largeButton = document.getElementById("changeToLarge");
-
-   var clearButton = document.getElementById('clearCanvas')
-
-   var colorUsed = "";
-   var widthUsed = 1;
-
-   blueButton.addEventListener("click", function() {
-      colorUsed = "blue";
-   });
-
-   redButton.addEventListener("click", function() {
-      colorUsed = "red";
-   });
-
-   blackButton.addEventListener("click", function() {
-      colorUsed = "black";
-   });
-
-   yellowButton.addEventListener("click", function(){
-      colorUsed = "yellow";
-   });
-
-   greenButton.addEventListener("click", function(){
-      colorUsed = "green";
-   });
-
-   orangeButton.addEventListener("click", function(){
-      colorUsed = "orange";
-   });
-
-   pinkButton.addEventListener("click", function(){
-      colorUsed = "pink";
-   });
-   purpleButton.addEventListener("click", function(){
-      colorUsed = "purple";
-   });
-   grayButton.addEventListener("click", function(){
-      colorUsed = "gray";
-   });
-
-
-   smallButton.addEventListener("click", function() {
-      widthUsed = 1;
-   });
-
-   mediumButton.addEventListener("click", function() {
-      widthUsed = 5;
-   });
-
-   largeButton.addEventListener("click", function() {
-      widthUsed = 9;
-   });
-
-   clearButton.addEventListener("click", function() {
-      clearCanvas();
-   });
-  //////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////
-
-
-
 
    // main loop, running every 25ms
    function mainLoop() {
@@ -149,8 +71,8 @@ $(function() {
          // send line to to the server
          socket.emit('draw_line', {
             line: [ mouse.pos, mouse.pos_prev ],
-            color: colorUsed,
-            width: widthUsed
+            // color: colorUsed,
+            // width: widthUsed
          });
          mouse.move = false;
       }
@@ -162,24 +84,57 @@ $(function() {
       socket.emit('clearCanvas', true);
    }
 
-  var saveButton = document.getElementById('saveDrawing');
+// var saveButton = document.getElementById('saveDrawing');
+//   saveButton.addEventListener('click', function(){
+//     savedData.src = canvas.toDataURL("image/png");
+//     var data = {
+//       source: savedData.src
+//     }
+//     $.post('/savedrawing', data).success(function(){
+//       console.log('success');
+//     },function(err){
+//       console.log(err);
+//     })
+//   })
+//
+//    loadButton.addEventListener("click", function(){
+//      $.get('/loadDrawing').success(function(data){
+//        savedData.src = data.source
+//        context.drawImage(savedData,0,0)
+//      })
+//    })
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    function downloadCanvas(link, canvasId, filename) {
+//        link.href = document.getElementById(canvasId).toDataURL();
+//        link.download = filename;
+//    }
+//
+//    /**
+//     * The event handler for the link's onclick event. We give THIS as a
+//     * parameter (=the link element), ID of the canvas and a filename.
+//    */
+//    document.getElementById('download').addEventListener('click', function() {
+//        console.log('clicked')
+//        downloadCanvas(this, 'drawing', 'test.png');
+//    }, false);
+//
+//
+//
+//
+//
+//
 
-  saveButton.addEventListener('click', function(){
-    savedData.src = canvas.toDataURL("image/png");
-    var data = {
-      source: savedData.src
-    }
-    $.post('/savedrawing', data).success(function(){
-      console.log('success');
-    },function(err){
-      console.log(err);
-    })
-  })
 
-   loadButton.addEventListener("click", function(){
-     $.get('/loadDrawing').success(function(data){
-       savedData.src = data.source
-       context.drawImage(savedData,0,0)
-     })
-   })
+
+
 });

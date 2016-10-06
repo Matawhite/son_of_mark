@@ -7,11 +7,15 @@ module.exports = function(app, passport) {
 		res.render('index');
 	});
 
-	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('mark', {
-			user : req.user
-		});
-	});
+	// app.get('/profile', isLoggedIn, function(req, res) {
+	// 	res.render('mark', {
+	// 		user : req.user
+	// 	});
+	// });
+
+	app.get('/profile', function(req, res){
+		res.render('mark');
+	})
 
 
 	app.get('/logout', function(req, res) {
