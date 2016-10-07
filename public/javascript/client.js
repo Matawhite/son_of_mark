@@ -23,6 +23,7 @@ $(function() {
    var mediumButton = document.getElementById("changeToMedium");
    var largeButton = document.getElementById("changeToLarge");
    var widthUsed = 1;
+   var colorUsed;
 
    // set canvas to full browser width/height
    canvas.width = width;
@@ -90,7 +91,7 @@ $(function() {
          // send line to to the server
          socket.emit('draw_line', {
             line: [ mouse.pos, mouse.pos_prev ],
-            // color: colorUsed,
+            color: colorUsed,
             width: widthUsed
          });
          mouse.move = false;
@@ -102,6 +103,10 @@ $(function() {
    function clearCanvas() {
       socket.emit('clearCanvas', true);
    }
+
+   $('#picker').on('mouseout', function(){
+     colorUsed = $('#colorChanging').val();
+   })
 
 clearButton.addEventListener("click", function() {
          clearCanvas();

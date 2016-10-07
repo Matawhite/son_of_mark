@@ -78,9 +78,9 @@
 <script type="text/javascript" src="javascript/chat.js"></script>
 <script type="text/javascript" src="javascript/client.js"></script>
 <script type="text/javascript">
-  $('#colorChanging').change(function(){
-    color = $('colorChanging').val();
-    console.log(color);
-  }).change()
+$('#picker').on('mouseout', function(){
+  varThis = $('#colorChanging').val();
+  console.log(varThis);
+})
 </script>
 </html>
