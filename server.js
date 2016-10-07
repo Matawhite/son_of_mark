@@ -128,19 +128,19 @@ io.on('connection', function(socket) {
 
 
 
-    socket.on('disconnect', function() {
-        var userData = clientInfo[socket.id];
-        console.log("disconnect");
-        if (typeof userData !== 'undefined') {
-            socket.leave(userData.room);
-            io.to(userData.room).emit('message', {
-                name: 'System',
-                text: userData.name + ' has left the room.',
-                timestamp: moment().valueOf()
-            });
-            delete clientInfo[socket.id];
-        }
-    });
+    // socket.on('disconnect', function() {
+    //     var userData = clientInfo[socket.id];
+    //     console.log("disconnect");
+    //     if (typeof userData !== 'undefined') {
+    //         socket.leave(userData.room);
+    //         io.to(userData.room).emit('message', {
+    //             name: 'System',
+    //             text: userData.name + ' has left the room.',
+    //             timestamp: moment().valueOf()
+    //         });
+    //         delete clientInfo[socket.id];
+    //     }
+    // });
 
     socket.on('joinRoom', function(req) {
         clientInfo[socket.id] = req;

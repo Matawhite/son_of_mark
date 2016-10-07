@@ -156,27 +156,8 @@
                             <div class="col-sm-6">
                                 <input id="room_to_join" type="text" name="name_dummy" class="form-control" placeholder="Private room number">
                             </div>
-                            <script>
-                            function myFunction() {
-                                var x = document.getElementById("mySelect").selectedIndex;
-                                // console.log(x);
-                                if (x == 3) {
-                                    var room_name = "Private" + Math.floor((Math.random() * 100000) + 1);
-                                    document.getElementById('room_name').value = room_name;
-                                    console.log(room_name);
-                                }
-                                elseif(x == 4) {
-                                    var room_name = "Private" + document.getElementById('room_to_join').value;
-                                    document.getElementById('room_name').value = room_name;
-                                    console.log(room_name);
-                                }
-                                else {
-                                    document.getElementById('room_name').value = document.getElementsByTagName("option")[x].value;
-                                    console.log(document.getElementsByTagName("option")[x].value);
-                                }
 
-                            }
-                            </script>
+
                             <!--       <input id="room_name_dummy" type="text" name="room_dummy" class="form-control" > -->
                         </div>
                         <!-- input-group -->
@@ -187,9 +168,24 @@
         </div>
         <!-- Open model button -->
         <div class="modal-footer">
-            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-            <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close2</button> -->
-            <input type="submit" value="Join room" onclick="myFunction()" data-dismiss="modal" class="btn-sm btn-primary btn-block">
+
+            <form action="/profile">
+                <div class="form-group">
+                   {{!--  <h3>Join a room</h3> --}}
+                                    
+                     <div class="input-group"></div>
+                        <input id="screen_name" type="hidden" name="name" class="form-control" />
+                        <input id="room_name" type="hidden" name="room" class="form-control" />
+{{!--                         <input type="submit" value="Join room" data-dismiss="modal" class="btn-sm btn-primary btn-block"> --}}
+                         <button type="submit" value="Join Chat" class="btn btn-danger btn-block">Join Room</button>
+                                    
+                    </div>
+             </form>
+
+
+
+
+
         </div>
         <!-- Open model button -->
     </div>
@@ -212,6 +208,7 @@
 
 </div>
 </body>
+<script src="/javascript/mark.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
 <script type="text/javascript" href="javascript/video.js"></script>
 </html>
