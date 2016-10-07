@@ -6,18 +6,24 @@ $(function() {
       pos_prev: false
    };
 
+   $('.dropdown-toggle').dropdown()
+    savedData = new Image();
 
-   // get canvas element and create context
+
+
    var canvas  = document.getElementById('drawing');
    var body = document.querySelector('body');
    var context = canvas.getContext('2d');
    var width   = window.innerWidth/1.6;
    var height  = window.innerHeight/1.6;
    var socket  = io.connect();
-   savedData = new Image();
-
-
    var loadButton = document.getElementById('loadDrawing');
+   var clearButton = document.getElementById('clearCanvas')
+   var smallButton = document.getElementById("changeToSmall");
+   var mediumButton = document.getElementById("changeToMedium");
+   var largeButton = document.getElementById("changeToLarge");
+   var widthUsed = 1;
+   var colorUsed;
 
    // set canvas to full browser width/height
    canvas.width = width;
@@ -62,6 +68,20 @@ $(function() {
       context.clearRect(0, 0, canvas.width, canvas.height);
    });
 
+   smallButton.addEventListener("click", function() {
+     console.log('clicked')
+     widthUsed = 1;
+  });
+
+  mediumButton.addEventListener("click", function() {
+     console.log('clicked')
+     widthUsed = 5;
+  });
+
+  largeButton.addEventListener("click", function() {
+     console.log('clicked')
+     widthUsed = 9;
+  });
 
 
    // main loop, running every 25ms
@@ -71,8 +91,8 @@ $(function() {
          // send line to to the server
          socket.emit('draw_line', {
             line: [ mouse.pos, mouse.pos_prev ],
-            // color: colorUsed,
-            // width: widthUsed
+            color: colorUsed,
+            width: widthUsed
          });
          mouse.move = false;
       }
@@ -84,36 +104,35 @@ $(function() {
       socket.emit('clearCanvas', true);
    }
 
-// var saveButton = document.getElementById('saveDrawing');
-//   saveButton.addEventListener('click', function(){
-//     savedData.src = canvas.toDataURL("image/png");
-//     var data = {
-//       source: savedData.src
-//     }
-//     $.post('/savedrawing', data).success(function(){
-//       console.log('success');
-//     },function(err){
-//       console.log(err);
-//     })
-//   })
-//
-//    loadButton.addEventListener("click", function(){
-//      $.get('/loadDrawing').success(function(data){
-//        savedData.src = data.source
-//        context.drawImage(savedData,0,0)
-//      })
-//    })
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+   $('#picker').on('mouseout', function(){
+     colorUsed = $('#colorChanging').val();
+   })
+
+clearButton.addEventListener("click", function() {
+         clearCanvas();
+      });
+
+var saveButton = document.getElementById('saveDrawing');
+  saveButton.addEventListener('click', function(){
+    savedData.src = canvas.toDataURL("image/png");
+    var data = {
+      source: savedData.src
+    }
+    $.post('/savedrawing', data).success(function(){
+      console.log('success');
+    },function(err){
+      console.log(err);
+    })
+  })
+
+   loadButton.addEventListener("click", function(){
+     $.get('/loadDrawing').success(function(data){
+       savedData.src = data.source
+       context.drawImage(savedData,0,0)
+     })
+   })
+
+
 //    function downloadCanvas(link, canvasId, filename) {
 //        link.href = document.getElementById(canvasId).toDataURL();
 //        link.download = filename;
@@ -127,12 +146,7 @@ $(function() {
 //        console.log('clicked')
 //        downloadCanvas(this, 'drawing', 'test.png');
 //    }, false);
-//
-//
-//
-//
-//
-//
+
 
 
 

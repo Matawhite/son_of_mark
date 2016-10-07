@@ -1,18 +1,21 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Welcome to Mark!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="javascript/html5kellycolorpicker.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="css/style.css">
+  	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<script type="text/javascript" src="javascript/html5kellycolorpicker.js"></script>
 </head>
 <body>
 	<nav class="navbar" id="ourNav">
 		<div class="navbar-header">
-			<a href="home.html" class="navbar-brand"><span class="glyphicon glyphicon-home" id="iconColorWhite" aria-hidden="true"></span></a>
+			<a href="/logout" class="navbar-brand"><span class="glyphicon glyphicon-home" id="iconColorWhite" aria-hidden="true"></span></a>
 			<h8 class="navbar-brand">Mark</h8>
 	    	<ul class="nav navbar-nav">
     			<li class="dropdown">
@@ -36,12 +39,13 @@
     			<li class="dropdown">
     				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-share" id="iconColor" aria-hidden="true"></span></span><span class="caret"></span></a>
     				<ul class="dropdown-menu">
-	    				 <a href="#" class="dropdown-item shareIcons"><span class="glyphicon glyphicon-download-alt" id="iconColor" aria-hidden="true"></span></span></a>
-	    				 <a href="#" class="dropdown-item shareIcons"><span class="glyphicon glyphicon-floppy-disk" id="iconColor" aria-hidden="true"></span></span></a>
+	    				 <a href="#" id="loadDrawing" class="dropdown-item shareIcons"><span class="glyphicon glyphicon-download-alt" id="iconColor" aria-hidden="true"></span></span></a>
+	    				 <a href="#" id="saveDrawing" class="dropdown-item shareIcons"><span class="glyphicon glyphicon-floppy-disk" id="iconColor" aria-hidden="true"></span></span></a>
 	    				 <a href="#" class="dropdown-item shareIcons"><span class="glyphicon glyphicon-send" id="iconColor" aria-hidden="true"></span></span></a>
     				</ul>
     			</li>
     		</ul>
+        <a href="#" id="clearCanvas" class="navbar-brand"><span class="glyphicon glyphicon-erase" id="iconColorWhite" aria-hidden="true"></span></a>
  		</div>
  	</nav>
 	<div class="container-fluid">
@@ -49,8 +53,8 @@
 
 			<!--Here we will create the left side of the page which will include the actual drawing application-->
 			<div class="col-md-8" id="left">
-				<div class="temporaryCanvasCSS text-center">
-           <canvas id="drawing"></canvas>
+				<div id="canvas" class="temporaryCanvasCSS text-center">
+          <canvas id="drawing"></canvas>
 				</div>
 			</div>
 
@@ -67,14 +71,25 @@
 			<p>Mark the collaborative drawing application - Copyright 2016</p>
 		</div>
 	</footer>
+<input type="hidden" id="colorChanging" value="#000000">
 </body>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
 <script type="text/javascript" src="javascript/chat.js"></script>
 <script type="text/javascript" src="javascript/client.js"></script>
+<<<<<<< HEAD
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 			<script src="/javascript/mark.js"></script>
             <script src="/javascript/moment.js"></script>
             <script src="/javascript/QueryParams.js"></script>
 
 
+=======
+<script type="text/javascript">
+$('#picker').on('mouseout', function(){
+  varThis = $('#colorChanging').val();
+  console.log(varThis);
+})
+</script>
+>>>>>>> 8d0712aeb63337502326f98904b3a2844f31d1ce
 </html>

@@ -32,7 +32,9 @@ function KellyColorPicker(cfg) {
     var method = 'quad';
     var alpha = false;          // is alpha slider enabled
     var drag = false;
+
     var cursorAnimReady = true; // sets by requestAnimationFrame to limit FPS on events like mousemove etc. when draging 
+
 
     var events = new Array();
     var userEvents = new Array();
@@ -238,7 +240,9 @@ function KellyColorPicker(cfg) {
         if (!canvasHelper)
             return false;
 
+
         // create canvas on 2 pixels bigger for Opera that cut image 
+
         var canvasSize = this.size + 2;
 
         canvasHelper.width = canvasSize;
@@ -380,7 +384,7 @@ function KellyColorPicker(cfg) {
             if (alpha)
                 a = colorData.a;
         }
-console.log(colorData.value);
+
         //if (hex.charAt(0) == '#') hex = hex.slice(1);
         //if (hex.length == 3) hex = hex + hex;
         //if (hex.length !== 6) hex = '#000000';
@@ -424,7 +428,9 @@ console.log(colorData.value);
         handler.setColorByHex(false); // update color info and first draw
     }
 
+
 	// Read color value from string cString in rgb \ rgba \ hex format 
+
     // falseOnFail = false - return default color #000000 on fail
 
     function readColorData(cString, falseOnFail) {
@@ -441,7 +447,9 @@ console.log(colorData.value);
             else if (cString.length == 6)
                 h = cString;
 
+
             //if (h && !h.match(/^#([0-9A-F]){3}$|^#([0-9A-F]){6}$/img)) h = false;			
+
 
         } else if (cString.substring(0, 3) == 'rgb') {
             var rgba = cString.split(",");
@@ -1105,7 +1113,9 @@ console.log(colorData.value);
 
             input.style.background = rgba;
         }
-       console.log(input.value);
+
+        
+        $('#colorChanging').val(input.value);
 
     }
 
@@ -1296,17 +1306,21 @@ console.log(colorData.value);
     }
 
 	// if 'popupshow' user event is setted and return false - prevent show popup default behavior
+
 	
     this.popUpShow = function (e) {
         if (popup.tag === false)
             return;
 			
+
         if (userEvents["popupshow"]) {
             var callback = userEvents["popupshow"];
             if (!callback(handler, e)) return;
         }
+
 		
         // include once 
+
         if (!KellyColorPicker.popupEventsInclude) {
             addEventListner(document, "click", function (e) {
                 if (KellyColorPicker.activePopUp)
@@ -1828,7 +1842,10 @@ console.log(colorData.value);
         return false;
     };
 
+
     // restore color of input ? 
+
+
 
     this.destroy = function () {
         if (svCursorMouse.curType > 0) {
@@ -1876,9 +1893,11 @@ console.log(colorData.value);
             place.parentNode.removeChild(place);
         }
 
+
         disableEvents(); // remove canvas events		
 
         // debug test for check is all events removed 
+
         // for (var key in events) {
         // 	console.log('key : ' +  key + ' data ' + events[key]);
         // }
