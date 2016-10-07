@@ -23,6 +23,10 @@ module.exports = function(app, passport) {
 		});
 
 
+		app.post('/chat', function(req, res){
+			res.redirect('profile');
+		})
+
 		app.post('/login', passport.authenticate('local-login', {
 			successRedirect : '/profile',
 			failureRedirect : '/login',

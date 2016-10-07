@@ -44,6 +44,7 @@
 	    				 <a href="#" class="dropdown-item shareIcons"><span class="glyphicon glyphicon-send" id="iconColor" aria-hidden="true"></span></span></a>
     				</ul>
     			</li>
+
     		</ul>
         <a href="#" id="clearCanvas" class="navbar-brand"><span class="glyphicon glyphicon-erase" id="iconColorWhite" aria-hidden="true"></span></a>
  		</div>
@@ -59,6 +60,63 @@
 			</div>
 
 			<!--Here we will create the right side of the page which should include the chat-->
+
+
+  <div class="col-md-3  well chat ">
+	<!-- Facebook share 				need to replace with link to pic  vvvvvvvvvvvvvv         -->
+     	<div class="fb-share-button" data-href="http://www.planwallpaper.com/static/images/da3w3eds.jpg" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share your pic on Facebook</a></div>
+	<!-- Facebook share -->
+        <div id="dragMe" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="room-title text-center"><!-- Room name (use jQuery) --></h4>
+            </div>
+            <div class="panel-body">
+                <div class="messages">
+                    <!-- Messages end up here! -->
+                </div>
+                <br>
+                <form id="message-form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-comment"></i>
+                                </span>
+                            <input type="text" name="message" placeholder="Message" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" />
+                    </div>
+                </form>
+                <div class="pannel-footer">
+                   {{!--  <a id="invite" href="/index.html" class="text-center">
+                        <p class="text-center">Invite a friend</p>
+                        <div class="fb-like" data-layout="standard" data-action="recommend" data-size="large" data-show-faces="true" data-share="true"></div>
+                    </a>
+ --}}
+
+
+    				<!-- Facebook invite -->
+ 					<div class="fb-share-button" data-href="https://young-scrubland-25157.herokuapp.com/index.html" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fyoung-scrubland-25157.herokuapp.com%2Findex.html&amp;src=sdkpreparse">Invite a friend</a></div>
+					<!-- Facebook invite -->
+
+
+
+
+
+
+
+
+                    <a href="/">
+                        <p class="text-center">Exit Room</p>
+                    </a>
+                    <!--  Link should open new tab for email or SMS invite -->
+                </div>
+            </div>
+
+
+
+
 			<div class="col-md-3" id="right">
 				<div id="chat" class="temporaryChatCSS text-center">
 				</div>
@@ -72,24 +130,26 @@
 		</div>
 	</footer>
 <input type="hidden" id="colorChanging" value="#000000">
-</body>
+
+
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
 <script type="text/javascript" src="javascript/chat.js"></script>
 <script type="text/javascript" src="javascript/client.js"></script>
-<<<<<<< HEAD
+
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-			<script src="/javascript/mark.js"></script>
-            <script src="/javascript/moment.js"></script>
-            <script src="/javascript/QueryParams.js"></script>
+<script src="/javascript/mark.js"></script>
+<script src="/javascript/moment.js"></script>
+<script src="/javascript/QueryParams.js"></script>
+<script src="/javascript/app.js"></script>
+<script src="/javascript/client.js"></script>
 
-
-=======
 <script type="text/javascript">
 $('#picker').on('mouseout', function(){
   varThis = $('#colorChanging').val();
   console.log(varThis);
 })
 </script>
->>>>>>> 8d0712aeb63337502326f98904b3a2844f31d1ce
+
+</body>
 </html>

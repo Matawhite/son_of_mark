@@ -142,8 +142,8 @@
                     <div class="form-group">
                         
                         <div class="input-group">
-                            <span class="input-group">
-                                            </span>
+                            {{!-- <span class="input-group">
+                                            </span> --}}
                             <div class="col-sm-6">
                                 <select class="form-control " id="mySelect">
                                     <option value="Public Room 1">Public Room 1</option>
@@ -158,7 +158,7 @@
                             </div>
 
 
-                            <!--       <input id="room_name_dummy" type="text" name="room_dummy" class="form-control" > -->
+
                         </div>
                         <!-- input-group -->
                     </div>
@@ -172,11 +172,9 @@
             <form action="/profile">
                 <div class="form-group">
                    {{!--  <h3>Join a room</h3> --}}
-                                    
-                     <div class="input-group"></div>
+                    {{!--    --}}
                         <input id="screen_name" type="hidden" name="name" class="form-control" />
                         <input id="room_name" type="hidden" name="room" class="form-control" />
-{{!--                         <input type="submit" value="Join room" data-dismiss="modal" class="btn-sm btn-primary btn-block"> --}}
                          <button type="submit" value="Join Chat" class="btn btn-danger btn-block">Join Room</button>
                                     
                     </div>
