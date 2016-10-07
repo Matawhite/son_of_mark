@@ -51,7 +51,14 @@
 					</div>
 					<div class="col-md-3 col-md-offset-1 text-center lighterBackground roundCorner">
 						<h3>Here you will be able to join a room</h3>
-						<a href="index.html"><button type="button" class="btn btn-danger">Join Room</button></a>
+{{!-- 						<a href="index.html"><button type="button" class="btn btn-danger">Join a Room</button></a>
+ --}}
+ 						<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Sign in</button>
+
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -89,6 +96,7 @@
     </div>
   </div>
 </div>
+
 <!-- Register Modal -->
 <div class="container">
 <div class="modal fade" id="signup" role="dialog">
@@ -115,6 +123,93 @@
     </div>
   </div>
 </div>
+<!-- Join room modal  -->
+
+            <div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+{{!--         <div class="modal-header">
+            <div id="status">
+                <h4 class="text-center">Select a Room</h4>
+                </div>
+        </div> --}}
+        <div class="modal-body">
+        <h4 class="text-center">Select a Room</h4>
+            <div class="col-md-12">
+                <form>
+
+                    <div class="form-group">
+                        
+                        <div class="input-group">
+                            <span class="input-group">
+                                            </span>
+                            <div class="col-sm-6">
+                                <select class="form-control " id="mySelect">
+                                    <option value="Public Room 1">Public Room 1</option>
+                                    <option value="Public Room 2">Public Room 2</option>
+                                    <option value="Public Room 3">Public Room 3</option>
+                                    <option value="Private Room">Private Room</option>
+                                    <option value="Private Room">Join Private Room</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input id="room_to_join" type="text" name="name_dummy" class="form-control" placeholder="Private room number">
+                            </div>
+                            <script>
+                            function myFunction() {
+                                var x = document.getElementById("mySelect").selectedIndex;
+                                // console.log(x);
+                                if (x == 3) {
+                                    var room_name = "Private" + Math.floor((Math.random() * 100000) + 1);
+                                    document.getElementById('room_name').value = room_name;
+                                    console.log(room_name);
+                                }
+                                elseif(x == 4) {
+                                    var room_name = "Private" + document.getElementById('room_to_join').value;
+                                    document.getElementById('room_name').value = room_name;
+                                    console.log(room_name);
+                                }
+                                else {
+                                    document.getElementById('room_name').value = document.getElementsByTagName("option")[x].value;
+                                    console.log(document.getElementsByTagName("option")[x].value);
+                                }
+
+                            }
+                            </script>
+                            <!--       <input id="room_name_dummy" type="text" name="room_dummy" class="form-control" > -->
+                        </div>
+                        <!-- input-group -->
+                    </div>
+                    <!-- form-group -->
+                </form>
+            </div>
+        </div>
+        <!-- Open model button -->
+        <div class="modal-footer">
+            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close2</button> -->
+            <input type="submit" value="Join room" onclick="myFunction()" data-dismiss="modal" class="btn-sm btn-primary btn-block">
+        </div>
+        <!-- Open model button -->
+    </div>
+    <!-- modal-content -->
+</div>
+<!-- modal-content -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
