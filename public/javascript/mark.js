@@ -7,7 +7,7 @@ function myFunction() {
         console.log(room_name);
     }
     
-    elseif(x == 4) {
+    else if(x == 4) {
         var room_name = "Private" + document.getElementById('room_to_join').value;
         document.getElementById('room_name').value = room_name;
         console.log(room_name);

@@ -43,6 +43,7 @@ var server = http.createServer(app);
 var io = socketIo.listen(server);
 
 var line_history = [];
+var touch_history = [];
 var chat_history = [];
 var socketId = "";
 var clientInfo = {};
@@ -83,9 +84,16 @@ io.on('connection', function(socket) {
         timestamp: moment().valueOf()
     });
 
+    for (var i in touch_history) {
+        socket.emit('touch_line', touch_history[i]);
+    }
 
-
-
+    socket.on('touch_line', function(data) {
+        var touchObject = {line: data.line, color: data.color, width: data.width};
+        touch_history.push(touchObject);
+        console.log(touch_history);
+        io.emit('touch_line', touchObject);
+    });
 
     for (var i in line_history) {
         socket.emit('draw_line', line_history[i]);

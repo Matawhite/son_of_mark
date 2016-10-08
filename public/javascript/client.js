@@ -162,7 +162,7 @@ $(function() {
        }
        touch.pos_prev = {x: touch.pos.x, y: touch.pos.y};
    }
-   setInterval(mainLoop, 25);
+   setInterval(mainLoop, 50);
 
    function clearCanvas() {
       socket.emit('clearCanvas', true);
