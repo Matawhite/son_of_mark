@@ -41,14 +41,14 @@ $(function() {
    canvas.onmousedown = function(e){ mouse.click = true; };
 
    canvas.addEventListener('touchstart', function(e) {
-      touch.drawing = true; 
+      touch.drawing = true;
       touch.pos.x = (e.changedTouches[0].clientX - canvasRect.left) / width;
-      touch.pos.y = (e.changedTouches[0].clientY - canvasRect.top + body.scrollTop) / height;  
+      touch.pos.y = (e.changedTouches[0].clientY - canvasRect.top + body.scrollTop) / height;
    });
    canvas.onmouseup = function(e){ mouse.click = false; };
 
    canvas.addEventListener('touchend', function(e) {
-      touch.drawing = false; 
+      touch.drawing = false;
    });
 
    canvas.onmousemove = function(e) {
@@ -195,24 +195,5 @@ var saveButton = document.getElementById('saveDrawing');
        context.drawImage(savedData,0,0)
      })
    })
-
-
-//    function downloadCanvas(link, canvasId, filename) {
-//        link.href = document.getElementById(canvasId).toDataURL();
-//        link.download = filename;
-//    }
-//
-//    /**
-//     * The event handler for the link's onclick event. We give THIS as a
-//     * parameter (=the link element), ID of the canvas and a filename.
-//    */
-//    document.getElementById('download').addEventListener('click', function() {
-//        console.log('clicked')
-//        downloadCanvas(this, 'drawing', 'test.png');
-//    }, false);
-
-
-
-
 
 });
