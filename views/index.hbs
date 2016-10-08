@@ -89,7 +89,7 @@
 			          <label>Password</label>
 			             <input type="password" class="form-control" name="password">
 		          </div>
-              <button type="submit" class="btn btn-warning btn-lg">Login</button>
+              <button type="submit" onclick="makeRoom()"  class="btn btn-warning btn-lg">Login</button>
 	        </form>
         </div>
       </div>
@@ -169,21 +169,15 @@
         <!-- Open model button -->
         <div class="modal-footer">
 
-            <form action="/profile">
+            <form action="/chat", method="post">
                 <div class="form-group">
                    {{!--  <h3>Join a room</h3> --}}
                     {{!--    --}}
                         <input id="screen_name" type="hidden" name="name" class="form-control" />
-                        <input id="room_name" type="hidden" name="room" class="form-control" />
-                         <button type="submit" value="Join Chat" class="btn btn-danger btn-block">Join Room</button>
-                                    
+                        <input id="room_name" type="hidden" name="room_name" class="form-control" />
+                         <button type="submit" value="Join Chat" onclick="myFunction()" class="btn btn-danger btn-block">Join Room</button>         
                     </div>
              </form>
-
-
-
-
-
         </div>
         <!-- Open model button -->
     </div>
@@ -205,8 +199,9 @@
 
 
 </div>
-</body>
 <script src="/javascript/mark.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
 <script type="text/javascript" href="javascript/video.js"></script>
+</body>
+
 </html>

@@ -2,9 +2,17 @@
 
 
 // Chat
-var name = getQueryVariable('name') || 'Anonymous';
-var room = getQueryVariable('room');
+//var name = getQueryVariable('name') || 'Anonymous';
+var name = document.getElementById('mark_screen_name').value;
+var room = room_name = makeRoom();
+//var room = getQueryVariable('room');
+
+
+
+
 var socket = io();
+
+
 
 
 
