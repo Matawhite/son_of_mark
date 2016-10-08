@@ -6,6 +6,13 @@ $(function() {
       pos_prev: false
    };
 
+    var touch = {
+      drawing: false,
+      move: false,
+      pos: {x:0, y:0},
+      pos_prev: {}
+   };
+
    $('.dropdown-toggle').dropdown()
     savedData = new Image();
 
@@ -32,7 +39,17 @@ $(function() {
 
    // register mouse event handlers
    canvas.onmousedown = function(e){ mouse.click = true; };
+
+   canvas.addEventListener('touchstart', function(e) {
+      touch.drawing = true; 
+      touch.pos.x = (e.changedTouches[0].clientX - canvasRect.left) / width;
+      touch.pos.y = (e.changedTouches[0].clientY - canvasRect.top + body.scrollTop) / height;  
+   });
    canvas.onmouseup = function(e){ mouse.click = false; };
+
+   canvas.addEventListener('touchend', function(e) {
+      touch.drawing = false; 
+   });
 
    canvas.onmousemove = function(e) {
       // normalize mouse position to range 0.0 - 1.0
@@ -40,6 +57,12 @@ $(function() {
       mouse.pos.y = (e.clientY - canvasRect.top + body.scrollTop) / height;
       mouse.move = true;
    };
+
+   canvas.addEventListener('touchmove', function(e) {
+      touch.move = true;
+      touch.pos.x = (e.changedTouches[0].clientX - canvasRect.left) / width;
+      touch.pos.y = (e.changedTouches[0].clientY - canvasRect.top + body.scrollTop) / height;
+   });
 
    // draw line received from server
    socket.on('draw_line', function(data) {
@@ -64,9 +87,39 @@ $(function() {
       }
    });
 
+   socket.on('touch_line', function(data) {
+      // variables and methods to draw the line with touch
+      var line = data.line;
+      context.beginPath();
+      context.moveTo(line[0].x * width, line[0].y * height);
+         context.lineTo(line[1].x * width, line[1].y * height);
+         // add color
+         context.strokeStyle = data.color;
+         // add width
+         context.lineWidth = data.width;
+         context.stroke();
+   });
+
    socket.on('clearCanvas', function() {
       context.clearRect(0, 0, canvas.width, canvas.height);
    });
+
+   // prevent the page to scroll
+   document.body.addEventListener("touchstart", function (e) {
+      if (e.target == canvas) {
+         e.preventDefault();
+      }
+   }, false);
+   document.body.addEventListener("touchend", function (e) {
+      if (e.target == canvas) {
+         e.preventDefault();
+      }
+   }, false);
+   document.body.addEventListener("touchmove", function (e) {
+      if (e.target == canvas) {
+         e.preventDefault();
+      }
+   }, false);
 
    smallButton.addEventListener("click", function() {
      console.log('clicked')
@@ -97,8 +150,19 @@ $(function() {
          mouse.move = false;
       }
       mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};
+
+      if (touch.drawing && touch.move && touch.pos_prev) {
+
+          socket.emit('touch_line', {
+             line: [touch.pos, touch.pos_prev],
+             color: colorUsed,
+             width: widthUsed
+          });
+          touch.move = false
+       }
+       touch.pos_prev = {x: touch.pos.x, y: touch.pos.y};
    }
-   setInterval(mainLoop, 25);
+   setInterval(mainLoop, 50);
 
    function clearCanvas() {
       socket.emit('clearCanvas', true);
