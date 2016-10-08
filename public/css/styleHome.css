@@ -4,6 +4,8 @@ body {
 }
 #main{
 	opacity: 0.8;
+	margin-top:50px;
+	height:600px;
 }
 #logoMark{
 	width:200px;

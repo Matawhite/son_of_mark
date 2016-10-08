@@ -11,56 +11,100 @@
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans|Righteous" rel="stylesheet">
 
 </head>
+<style type="text/css">
+  .homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}
+</style>
 <body>
+  <div class="container-fluid">
+    <div class="row" id="headerId">
+      <div class="col-md-12 text-center" id="headerMark">
+        <img src="images/mark.png" id="logoMark">
+      </div>
+    </div>
+  </div>
 	<!-- This adds the video as the background -->
-	<div class="fullscreen-bg">
-	    <video loop muted autoplay poster="images/videoframe.jpg" class="fullscreen-bg__video">
-	        <source src="WEBM/Wall-Sketching.webm" type="video/webm">
-	        <source src="MP4/Wall-Sketching.mp4" type="video/mp4">
-	    </video>
-	</div>
-	<div class="container-fluid">
-		<div class="row" id="headerId">
-			<div class="col-md-12 text-center" id="headerMark">
-				<img src="images/mark.png" id="logoMark">
-			</div>
-		</div>
-	</div>
+<div class="homepage-hero-module">
+    <div class="video-container">
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+          <source src="MP4/Wall-Sketching.mp4" type="video/mp4">
+          <source src="WEBM/Wall-Sketching.webm" type="video/webm">
+        </video>
+        <div class="poster hidden">
+        </div>
+          <div class="container" id="main">
+            <div class="row">
+              <div class="jumbotron text-center" id="jumboColor">
+                <span class="glyphicon glyphicon-pencil largeIcon"></span>
+                <h2>Welcome to Mark. The game changing application that allows you to draw
+                alongside your friends online. Play a game of pictionary or create some art,
+                the world is yours with Mark.</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" id="joinRoom">
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-3 text-center lighterBackground roundCorner">
+                    <h3>Want to Join in on the fun? Sign up here!</h3>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#signup">Sign up</button>
+                  </div>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-3 text-center lighterBackground roundCorner">
+                    <h3>Already signed up? Login in Right here!</h3>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">Sign in</button>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>
+
 
 	<br>
-	<!-- This is our main section -->
-	<div class="container" id="main">
-		<div class="row">
-			<div class="jumbotron text-center" id="jumboColor">
-				<span class="glyphicon glyphicon-pencil largeIcon"></span>
-				<h2>Welcome to Mark. The game changing application that allows you to draw
-				alongside your friends online. Play a game of pictionary or create some art,
-				the world is yours with Mark.</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12" id="joinRoom">
-				<div class="row">
-          <div class="col-md-2"></div>
-					<div class="col-md-3 text-center lighterBackground roundCorner">
-						<h3>Want to Join in on the fun? Sign up here!</h3>
-						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#signup">Sign up</button>
-					</div>
-          <div class="col-md-2"></div>
-					<div class="col-md-3 text-center lighterBackground roundCorner">
-						<h3>Already signed up? Login in Right here!</h3>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">Sign in</button>
-					</div>
-          <div class="col-md-2"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<footer class="footer navbar-fixed-bottom text-center" id="markFooter">
-		<div class="container">
-			<p>Mark the collaborative drawing application - Copyright 2016</p>
-		</div>
-	</footer>
+
   <!-- Login Modal -->
   <div class="container">
   <div class="modal fade" id="login" role="dialog">
