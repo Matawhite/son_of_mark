@@ -1,11 +1,11 @@
 body {
-	background-color:#dee6ed;
+    background-color:#364e63;
 	font-family: 'Righteous', cursive;
 }
 #main{
 	opacity: 0.8;
 	margin-top:50px;
-	height:530px;
+	height:1000px;
 }
 #logoMark{
 	width:200px;
